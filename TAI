@@ -33,11 +33,11 @@ python3 -m pip install torch==1.7.1+cu110 torchvision==0.8.2+cu110 torchaudio===
 python3 -m pip install transformers pandas scikit-learn
 
 # Set up Docker & Nvidia Container Toolkit
-curl https://get.docker.com | sh && sudo systemctl --now enable docker
-distribution=$(. /etc/os-release;echo $ID$VERSION_ID) && curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add - && curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
-sudo apt-get update
-sudo apt-get install -y nvidia-docker2
-sudo systemctl restart docker
+curl https://get.docker.com | sh && systemctl --now enable docker
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID) && curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | apt-key add - && curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | tee /etc/apt/sources.list.d/nvidia-docker.list
+apt-get update
+apt-get install -y nvidia-docker2
+systemctl restart docker
 
 echo "export LC_ALL=en_US.UTF-8" >> ~/.bashrc
 echo "export LANG=en_US.UTF-8" >> ~/.bashrc

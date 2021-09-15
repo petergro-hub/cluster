@@ -3,6 +3,7 @@ apt install vim tmux python3-dev python3-venv python3-pip
 python3 -m pip install --upgrade pip setuptools
 python3 -m pip install wheel
 
+mkdir ~/cuda_11
 cd ~/cuda_11
 
 # Install CUDA Toolkit 11.0 Update 1

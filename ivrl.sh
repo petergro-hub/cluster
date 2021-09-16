@@ -108,11 +108,13 @@ curl -s http://install.iccluster.epfl.ch/scripts/it/scratchVolume.sh  >> scratch
 # Install CUDA !!! INSTALL APRES REBOOT !!!
 echo '#!/bin/sh -e' > /etc/rc.local
 
+mkdir -p /opt/ivrl
+
 echo '
 FLAG="/var/log/firstboot.cuda.log"
 if [ ! -f $FLAG ]; then
 	touch $FLAG
-        curl -s http://install.iccluster.epfl.ch/scripts/soft/cuda/cuda_11.0.2_450.41.sh >> /tmp/cuda.sh ; chmod +x /tmp/cuda.sh; /tmp/cuda.sh;
+        curl -s http://install.iccluster.epfl.ch/scripts/soft/cuda/cuda_11.0.2_450.41.sh >> /opt/ivrl/cuda.sh ; chmod +x /opt/ivrl/cuda.sh; /opt/ivrl/cuda.sh;
 fi' >> /etc/rc.local
 
 echo '

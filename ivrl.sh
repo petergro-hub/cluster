@@ -80,6 +80,10 @@ curl -s http://install.iccluster.epfl.ch/scripts/icitsshkeys.sh >> icitsshkeys.s
 mkdir /ivrldata1
 echo "#/ivrldata1" >> /etc/fstab
 echo "ic1files.epfl.ch:/ic_ivrl_2_files_nfs      /ivrldata1     nfs     soft,intr,bg 0 0" >> /etc/fstab
+# Add Sinergia data
+mkdir /sinergia
+echo "#/sinergia" >> /etc/fstab
+echo "ic1files.epfl.ch:/ic_ivrl_3_files_nfs/sinergia      /sinergia     nfs     soft,intr,bg 0 0" >> /etc/fstab
 
 #########################################
 # Install LDAP + Autmount
@@ -109,6 +113,19 @@ curl -s http://install.iccluster.epfl.ch/scripts/it/scratchVolume.sh  >> scratch
 echo '#!/bin/sh -e' > /etc/rc.local
 
 mkdir -p /opt/ivrl
+
+# Make IVRL group sudo
+echo '#!/bin/bash
+# All the lab in sudoers
+GROUP=$(getent group $1 | awk -F: \'{print $4}\'| tr "," "\n")
+for user in $GROUP
+do
+usermod -aG sudo $user
+done' >> /opt/ivrl/sudos.sh
+chmod +x /opt/ivrl/sudos.sh
+./opt/ivrl/sudos.sh
+
+#
 
 echo '
 FLAG="/var/log/firstboot.cuda.log"

@@ -114,18 +114,18 @@ echo '#!/bin/sh -e' > /etc/rc.local
 
 mkdir -p /opt/ivrl
 
-# Make IVRL group sudo
-echo '#!/bin/bash
-# All the lab in sudoers
-GROUP=$(getent group $1 | awk -F: \'{print $4}\'| tr "," "\n")
-for user in $GROUP
-do
-usermod -aG sudo $user
-done' >> /opt/ivrl/sudos.sh
-chmod +x /opt/ivrl/sudos.sh
-./opt/ivrl/sudos.sh
+# # Make IVRL group sudo
+# echo '#!/bin/bash
+# #All the lab in sudoers
+# GROUP=$(getent group $1 | awk -F: \'{print $4}\'| tr "," "\n")
+# for user in $GROUP
+# do
+# usermod -aG sudo $user
+# done' >> /opt/ivrl/sudos.sh
+# chmod +x /opt/ivrl/sudos.sh
+# ./opt/ivrl/sudos.sh
 
-#
+# #
 
 echo '
 FLAG="/var/log/firstboot.cuda.log"
